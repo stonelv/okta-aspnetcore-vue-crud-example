@@ -7,21 +7,18 @@ const client = axios.create({
 })
 
 export default {
-  async execute (method, resource, data) {
-    const accessToken = await Vue.prototype.$auth.getAccessToken()
+  async execute (method, resource, data, params) {
     return client({
       method,
       url: resource,
       data,
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+      params
     }).then(req => {
       return req.data
     })
   },
   getAll (params = {}) {
-    return this.execute('get', '/', { params })
+    return this.execute('get', '/', null, params)
   },
   getById (id) {
     return this.execute('get', `/${id}`)

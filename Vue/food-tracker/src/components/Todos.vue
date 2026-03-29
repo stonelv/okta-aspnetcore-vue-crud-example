@@ -108,7 +108,7 @@
         </b-form-group>
 
         <div class="text-right">
-          <b-button variant="secondary" @click="modal.show = false" class="mr-2">Cancel</b-button>
+          <b-button variant="secondary" @click="closeModal" class="mr-2">Cancel</b-button>
           <b-button variant="primary" type="submit" :disabled="!validateTitle()">Save</b-button>
         </div>
       </b-form>
@@ -116,7 +116,7 @@
 
     <b-modal v-model="deleteModal.show" title="Confirm Delete" ok-variant="danger" ok-title="Delete" @ok="confirmDelete">
       <p>Are you sure you want to delete this todo?</p>
-      <p class="text-danger"><strong>{{ deleteModal.todo?.title }}</strong></p>
+      <p class="text-danger"><strong>{{ deleteModal.todo ? deleteModal.todo.title : '' }}</strong></p>
     </b-modal>
   </div>
 </template>
@@ -178,8 +178,8 @@ export default {
         }
 
         const result = await api.getAll(params);
-        this.todos = result.items;
-        this.pagination.totalCount = result.totalCount;
+          this.todos = result.Items;
+          this.pagination.totalCount = result.TotalCount;
       } catch (error) {
         console.error('Error loading todos:', error);
         this.$bvToast.toast('Failed to load todos', {
@@ -208,6 +208,11 @@ export default {
       }
       this.modal.show = true;
     },
+    closeModal() {
+      this.$nextTick(() => {
+        this.modal.show = false;
+      });
+    },
     async saveTodo() {
       try {
         if (this.modal.isEdit) {
@@ -225,7 +230,7 @@ export default {
             solid: true
           });
         }
-        this.modal.show = false;
+        this.closeModal();
         await this.loadTodos();
       } catch (error) {
         console.error('Error saving todo:', error);
@@ -281,6 +286,7 @@ export default {
     },
     resetModal() {
       this.modal.model = {};
+      this.modal.show = false;
     },
     toggleSortDirection() {
       this.sort.desc = !this.sort.desc;

@@ -34,22 +34,14 @@ let router = new Router({
     {
       path: '/food-records',
       name: 'FoodRecords',
-      component: FoodRecords,
-      meta: {
-        requiresAuth: true
-      }
+      component: FoodRecords
     },
     {
       path: '/todos',
       name: 'Todos',
-      component: Todos,
-      meta: {
-        requiresAuth: true
-      }
+      component: Todos
     },
   ]
 })
-
-router.beforeEach(Vue.prototype.$auth.authRedirectGuard())
 
 export default router

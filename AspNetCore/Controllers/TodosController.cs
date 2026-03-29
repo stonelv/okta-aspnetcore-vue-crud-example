@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 namespace AspNetCore.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class TodosController : ControllerBase
     {
@@ -23,7 +22,7 @@ namespace AspNetCore.Controllers
 
         private string GetUserId()
         {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return "anonymous-user";
         }
 
         [HttpGet]
