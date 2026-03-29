@@ -8,6 +8,7 @@ import Auth from '@okta/okta-vue'
 // our own imports
 import Hello from '@/components/Hello'
 import FoodRecords from '@/components/FoodRecords'
+import Todos from '@/components/Todos'
 
 Vue.use(Auth, {
   issuer: 'https://dev-867692.oktapreview.com/oauth2/default',
@@ -33,14 +34,14 @@ let router = new Router({
     {
       path: '/food-records',
       name: 'FoodRecords',
-      component: FoodRecords,
-      meta: {
-        requiresAuth: true
-      }
+      component: FoodRecords
+    },
+    {
+      path: '/todos',
+      name: 'Todos',
+      component: Todos
     },
   ]
 })
-
-router.beforeEach(Vue.prototype.$auth.authRedirectGuard())
 
 export default router
