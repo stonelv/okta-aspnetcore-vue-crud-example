@@ -145,7 +145,7 @@
       @ok="handleDelete"
     >
       <p>Are you sure you want to delete this todo?</p>
-      <p class="font-weight-bold">"{{ todoToDelete?.title }}"</p>
+      <p class="font-weight-bold">"{{ todoToDelete && todoToDelete.title }}"</p>
     </b-modal>
   </div>
 </template>

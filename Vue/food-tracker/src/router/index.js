@@ -9,6 +9,7 @@ import Auth from '@okta/okta-vue'
 import Hello from '@/components/Hello'
 import FoodRecords from '@/components/FoodRecords'
 import Todos from '@/components/Todos'
+import Meals from '@/components/Meals'
 
 Vue.use(Auth, {
   issuer: 'https://dev-867692.oktapreview.com/oauth2/default',
@@ -43,6 +44,14 @@ let router = new Router({
       path: '/todos',
       name: 'Todos',
       component: Todos,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/meals',
+      name: 'Meals',
+      component: Meals,
       meta: {
         requiresAuth: true
       }
