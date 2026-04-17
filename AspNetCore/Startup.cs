@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +51,7 @@ namespace AspNetCore
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                dbContext.Database.EnsureDeleted();
             }
 
             dbContext.Database.EnsureCreated();
