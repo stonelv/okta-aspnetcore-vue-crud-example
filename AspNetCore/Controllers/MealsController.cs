@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace AspNetCore.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [AllowAnonymous]
     [ApiController]
     public class MealsController : ControllerBase
     {
