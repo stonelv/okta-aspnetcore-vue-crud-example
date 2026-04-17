@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCore
 {
@@ -7,6 +7,8 @@ namespace AspNetCore
         public DbSet<FoodRecord> FoodRecords { get; set; }
         
         public DbSet<Todo> Todos { get; set; }
+        
+        public DbSet<Meal> Meals { get; set; }
         
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
